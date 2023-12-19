@@ -1,0 +1,21 @@
+body {
+    background: #FFF;
+}
+.print-only {
+	display: none;
+}
+
+@media print {
+	.content {
+		padding: 0;
+	}
+	.print-only {
+		display: contents;
+	}
+	.page-break-avoid {
+		page-break-inside: avoid;
+	}
+	.thead-dark th, .thead-dark td {
+    	background-color: #333!important;
+	}
+}

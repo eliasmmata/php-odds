@@ -1,0 +1,114 @@
+// == Custom Styles
+
+// Colors
+@c1: #0255a5; // blue
+@c2: #5c90c1; // light blue
+@c3: #043464; // dark blue
+
+@font_1: 'Asap Condensed', sans-serif;
+@font_2: 'Asap', sans-serif;
+
+// Card color
+@cardYellow: #ffdd00;
+@cardRed: #f54921;
+
+@field: #5a5a5a;
+
+// Player position colors
+@pos1: #EDBA28;
+@pos2: #52A331;
+@pos3: #29A5E7;
+@pos4: #FF0E17;
+
+@src_root: '../img/';
+/************ GENERALES ************/
+.w150{width: 150px;}
+.w120{width: 120px;}
+.w50 {width: 50px;}
+.w40 {width: 40px;}
+.w30 {width: 30px;}
+.w25 {width: 25px;}
+.w20 {width: 20px;}
+.w15 {width: 15px;}
+
+.pv-2 {padding-top:2px;padding-bottom:2px;}
+.ph-2 {padding-left:2px;padding-right:2px;}
+
+.fs10 {font-size: 10px;}
+.fs12 {font-size: 12px;}
+.fs15 {font-size: 15px;}
+.fs16 {font-size: 16px;}
+.fs20 {font-size: 20px;}
+.fs26 {font-size: 26px;}
+
+.lh36 {line-height: 36px;}
+
+.sidebar:not(.sidebar-component) .sidebar-content{overflow-y:auto;}
+.overflow-h {overflow: hidden;}
+.overflow-a {overflow: auto;}
+.text-ellipsis {text-overflow: ellipsis;}
+.dropdown-scrollable.small {max-height:200px;}
+.space-normal {white-space: normal;}
+.break-all {word-break: break-all;}
+.alpha-yellow {background: #fff3e0;}
+.badge-pill{padding: .25em 0.85em .3em;font-size: 84%;}
+.bg-black{background:#000;}
+.bg-success-200{
+    background: rgba(81, 163, 49, 0.30);
+    color: #0277BD !important;
+}
+.sidebar{
+	.nav.nav-sidebar .nav-link.active{
+		background-color: #767676a6;
+	}
+}
+.media-responsive {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    width: 100%;
+    overflow: hidden;
+    &.full {padding-bottom: 100%;}
+}
+iframe {height: 100%; border:none;}
+.table{
+    white-space: nowrap;
+    &.table-smaller {
+    	td, th {padding: 3px 5px;}
+    }
+}
+/************ SELECTS ************/
+.min-select .select2-selection {
+	height: 30px;
+	line-height: 27px;
+	padding: 0;
+}
+/************ LOGIN ************/
+.background-login {
+	background: url('../img/bg_login.jpg');
+}
+/************ TABS ************/
+.nav-pills-bordered {
+	.nav-link{
+		border-color: #1e88e5;
+		&:not(.active), &:not(.active):focus {background: #1e88e5; color: white;}
+		&:not(.active):hover {
+			background-color: #005eb8;
+			border-color: #005eb8;
+			color: white;
+		}
+		&.active {border-color: #005497;}
+	}
+}
+
+@import "dark.less";
+
+@media (max-width:1800px) {
+ 	.table-responsive-xxl {
+		display:block;
+		width:100%;
+		overflow-x:auto;
+		-webkit-overflow-scrolling:touch;
+		-ms-overflow-style:-ms-autohiding-scrollbar;
+	}
+}

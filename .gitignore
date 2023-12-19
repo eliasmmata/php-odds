@@ -1,0 +1,7 @@
+/vendor
+docker/mysql
+composer.json
+composer.lock
+auth.json
+
+/public/media/cron

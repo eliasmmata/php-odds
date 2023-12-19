@@ -1,0 +1,56 @@
+# Limit rate per IP
+limit_req_zone $binary_remote_addr zone=by_ip:1m rate=10r/m;
+
+server {
+    listen 5441;
+
+    server_name localhost;
+
+    root /var/www/odds/public;
+    index index.php;
+
+
+    location / {
+       try_files $uri $uri/ /index.php?$query_string;
+      #try_files $uri $uri/ /index.php;
+        autoindex on;
+        autoindex_exact_size on;
+
+    }
+
+    # Clients masks limit by IP
+    location /api/v2/mask/clients/ {
+      limit_req zone=by_ip burst=10 nodelay;
+      try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # Remove trailing slash to please routing system.
+    if (!-d $request_filename) {
+      rewrite ^/(.+)/$ /$1 permanent;
+    }
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        # NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
+        # With php5-fpm:
+        fastcgi_pass php:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+        fastcgi_cache phpcache;
+        fastcgi_cache_valid 200 301 302 1s;
+        fastcgi_cache_use_stale error timeout updating invalid_header http_500 http_503;
+        fastcgi_cache_min_uses 1;
+        fastcgi_cache_lock on;
+        add_header X-FastCGI-Cache $upstream_cache_status;
+    }
+
+}
+
+server {
+    listen 5441;
+    server_name localhost;
+    return 302 https://$server_name$request_uri;
+}
